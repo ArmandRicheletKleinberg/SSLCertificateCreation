@@ -67,7 +67,7 @@ $CommonName = Read-Host "Enter the Common Name (e.g., www.example.com)"
 $Organization = Read-Host "Enter the Organization Name (e.g., Example Corp)"
 $OrganizationalUnit = Read-Host "Enter the Organizational Unit (e.g., IT Department)"
 $City = Read-Host "Enter the City or Locality (Default: New York)" -Default "New York"
-$State = Read-Host "Enter the State or Province (e.g., NY)"
+$State = Read-Host "Enter the State or Province (e.g., NY)"  -Default "NY"
 $Country = Read-Host "Enter the Country Code (2-letter, Default: US)" -Default "US"
 $SANs = Read-Host "Enter Subject Alternative Names (SANs) as comma-separated list (e.g., www.example.com, sftp.example.com)"
 $KeyLength = Read-Host "Enter the Key Length (Default: 2048)" -Default "2048"
@@ -80,11 +80,6 @@ if (-not (Validate-Country $Country)) {
     exit 1
 }
 
-# Validate city name
-if (-not (Validate-City $City $Country)) {
-    Write-Host "Invalid city name. Please enter a valid city in the given country."
-    exit 1
-}
 
 # Check if certreq.exe is available
 $certreqPath = Check-CertReq
